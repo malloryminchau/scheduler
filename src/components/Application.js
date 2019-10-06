@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import DayList from "components/DayList.js"
 import Appointment from "components/Appointment/index.js"
 import axios from 'axios'
+import getAppointmentsForDay from '../helpers/selectors.js'
 
 import "components/Application.scss";
 
@@ -60,33 +61,17 @@ const appointments = [
   },
 ];
 
-
-// const days = [
-//   {
-//     id: 1,
-//     name: "Monday",
-//     spots: 2,
-//   },
-//   {
-//     id: 2,
-//     name: "Tuesday",
-//     spots: 5,
-//   },
-//   {
-//     id: 3,
-//     name: "Wednesday",
-//     spots: 0,
-//   },
-// ];
-
 export default function Application(props) {
-  const [day, setDay] = useState("Monday");
-  const [days, setDays] = useState([]);
+  // const [day, setDay] = useState("Monday");
+  // const [days, setDays] = useState([]);
   const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {}
   });
+  const setDay = day => setState({ ...state, day })
+  // const setDays = days => setState({ ...state, days})
+
   
   const schedule = appointments.map(appointment => {
     return (
@@ -94,13 +79,14 @@ export default function Application(props) {
     )
   })
 
-  useEffect(() => {
-    axios.get('/api/days')
-    .then((response) => {
-      setDays(response.data)
-    })
-    
-  }); 
+  let daysURL = '/api/days'
+  let appointmentsURL = '/api/appointments'
+  const promise1 = axios.get(daysURL)
+  const promise2 = axios.get(appointmentsURL)
+  Promise.all([promise1, promise2]).then(function(all) {
+    console.log(all)
+    setState(prev => ({days: all[0].data, appointments: all[1].data}))
+  })
 
   return (
     <main className="layout">
@@ -113,8 +99,8 @@ export default function Application(props) {
       <hr className="sidebar__separator sidebar--centered" />
       <nav className="sidebar__menu">
         <DayList
-          days={days}
-          day={day}
+          days={state.days}
+          day={state.day}
           setDay={setDay}
         />
         </nav>
