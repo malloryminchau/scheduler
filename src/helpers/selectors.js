@@ -15,15 +15,16 @@ export function getAppointmentsForDay(state, day) {
 
 export function getInterview(state, interview) {
   let interviews = {}
-  console.log(interview)
+  let instructorid = ""
+  // console.log("TEST data", state.interviewers)
   if (interview === null) {
     return null
   } else {
-    let instructorid = interview.interviewer
-    console.log(instructorid)
+    instructorid = interview.interviewer
+    // console.log(instructorid)
     interviews.student = interview.student
     interviews.interviewer = state.interviewers[instructorid]
-    console.log(interviews)
+    // console.log(interviews)
     return interviews
   }
 }
