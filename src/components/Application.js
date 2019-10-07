@@ -62,21 +62,26 @@ const appointments = [
 ];
 
 export default function Application(props) {
-  // const [day, setDay] = useState("Monday");
-  // const [days, setDays] = useState([]);
   const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {}
   });
   const setDay = day => setState({ ...state, day })
-  // const setDays = days => setState({ ...state, days})
 
-  
+  const appointments = getAppointmentsForDay(state, state.day);
+
   const schedule = appointments.map(appointment => {
+    const interview = getInterview(state, appointment.interview);
+
     return (
-      <Appointment key={appointment.id} {...appointment}/>
-    )
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+      />
+    );
   })
 
   let daysURL = '/api/days'

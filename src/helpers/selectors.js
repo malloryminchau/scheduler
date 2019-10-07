@@ -12,3 +12,18 @@ export function getAppointmentsForDay(state, day) {
     return filteredDay
   }
 }
+
+export function getInterview(state, interview) {
+  let interviews = {}
+  console.log(interview)
+  if (interview === null) {
+    return null
+  } else {
+    let instructorid = interview.interviewer
+    console.log(instructorid)
+    interviews.student = interview.student
+    interviews.interviewer = state.interviewers[instructorid]
+    console.log(interviews)
+    return interviews
+  }
+}
