@@ -31,16 +31,21 @@ export default function Appointment(props) {
       interviewer
     };
     transition(SAVING)
-    props.bookInterview(props.id, interview).then((response) => {
-      if (response === "ERROR") {
-        transition(ERROR_SAVE, true)
-      } else {
-        transition(SHOW)
-      }
-    }).catch((error) => {
-      console.log("ERROR", error)
-      transition(ERROR_SAVE)
-    })
+    if (name && interviewer) {
+      props.bookInterview(props.id, interview).then((response) => {
+        if (response === "ERROR") {
+          transition(ERROR_SAVE, true)
+        } else {
+          transition(SHOW)
+        }
+      }).catch((error) => {
+        console.log("ERROR", error)
+        transition(ERROR_SAVE)
+      })
+
+  } else {
+    transition(ERROR_SAVE, true)
+  }
     
   }
 
@@ -70,7 +75,7 @@ export default function Appointment(props) {
     transition(EDIT)
   }
 
-
+  console.log("NEW FUNCTION PROP TEST", props)
     return (
       <Fragment>
         <Header time={props.time}/>
