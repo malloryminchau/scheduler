@@ -3,6 +3,7 @@ import "components/InterviewerList.scss";
 import classNames from "classnames/bind"
 import { format } from "path";
 import InterviewerListItem from "components/InterviewerListItem.js"
+import PropTypes from 'prop-types'
 
 export default function InterviewerList(props) {
 
@@ -30,3 +31,8 @@ export default function InterviewerList(props) {
     )
 
 }
+
+InterviewerList.propTypes = {
+  value: PropTypes.number,
+  onChange: PropTypes.func.isRequired
+};

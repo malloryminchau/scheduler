@@ -1,7 +1,7 @@
 export function getAppointmentsForDay(state, day) {
   let dayAppointments = []
   const filteredDay = state.days.filter(days => days.name === day)
-  console.log("appointment filtered days", filteredDay)
+  // console.log("appointment filtered days", filteredDay)
   if(filteredDay.length > 0) {
     dayAppointments = filteredDay[0].appointments
     let appointmentObject = []

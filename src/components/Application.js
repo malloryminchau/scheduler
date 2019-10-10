@@ -3,7 +3,7 @@ import DayList from "components/DayList.js"
 import Appointment from "components/Appointment/index.js"
 import axios from 'axios'
 import { getAppointmentsForDay, getInterview, getInterviewersForDay} from '../helpers/selectors.js'
-import useApplicationData from "../hooks/useApplicationData.js"
+import { useApplicationData } from "../hooks/useApplicationData.js"
 
 import "components/Application.scss";
 
@@ -16,7 +16,7 @@ export default function Application(props) {
   } = useApplicationData();
 
 
-  
+  // console.log("THIS IS THE STATE", state)
   const interviewers = getInterviewersForDay(state, state.day);
 
   const appointments = getAppointmentsForDay(state, state.day).map(
@@ -51,6 +51,7 @@ export default function Application(props) {
           days={state.days}
           day={state.day}
           setDay={setDay}
+          spots={state.day.spots}
         />
         </nav>
         <img

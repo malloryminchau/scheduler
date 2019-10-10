@@ -24,7 +24,6 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -75,7 +74,7 @@ export default function Appointment(props) {
     transition(EDIT)
   }
 
-  console.log("NEW FUNCTION PROP TEST", props)
+  // console.log("NEW FUNCTION PROP TEST", props)
     return (
       <Fragment>
         <Header time={props.time}/>
