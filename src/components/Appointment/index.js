@@ -74,66 +74,70 @@ export default function Appointment(props) {
     transition(EDIT)
   }
 
-  // console.log("NEW FUNCTION PROP TEST", props)
     return (
-      <Fragment>
-        <Header time={props.time}/>
-        {mode === EMPTY && <Empty onAdd={() => {
-          transition(CREATE)
-        }} />}
-        {mode === SHOW && (
-          <Show
-            student={props.interview.student}
-            interviewer={props.interview.interviewer.name}
-            confirmCancel={confirmCancel}
-            edit={edit}
-          />
-        )}
-        {mode === CREATE && (
-          <Form
-          interviewers={props.interviewers}
-          onSave={save}          
-          cancel={back}
-          />
-        )}
-        {mode === CONFIRM && (
-          <Confirm
-          cancel={cancel}
-          cancelDelete={cancelDelete}
-          />
-        )}
-        {mode === SAVING && (
-          <Status
-          message={"Saving"}
-          />
-        )}
-        {mode === DELETING && (
-          <Status
-          message={"Deleting"}
-          />
-        )}
-        {mode === EDIT && (
-          <Form
-          name={props.interview.student}
-          interviewers={props.interviewers}
-          interviewer={props.interview.interviewer.id}
-          cancel={back}
-          onSave={save}
-          />
-        )}
-        {mode === ERROR_SAVE && (
-          <Error
-          cancel={back}
-          message={"save"}
-          />
-        )}
-        {mode === ERROR_DELETE && (
-          <Error
-          cancel={back}
-          message={"delete"}
-          />
-        )}
-      </Fragment>
+        <Fragment>
+          <article data-testid="appointment">
+          <Header time={props.time}/>
+          {mode === EMPTY && 
+          <Empty onAdd={() => {
+            transition(CREATE)
+          }} />}
+          {mode === SHOW && (
+            <Show
+              student={props.interview.student}
+              interviewer={props.interview.interviewer.name}
+              confirmCancel={confirmCancel}
+              edit={edit}
+            />
+          )}
+          {mode === CREATE && (
+            <Form
+            interviewers={props.interviewers}
+            onSave={save}          
+            cancel={back}
+            />
+          )}
+          {mode === CONFIRM && (
+            <Confirm
+            cancel={cancel}
+            cancelDelete={cancelDelete}
+            />
+          )}
+          {mode === SAVING && (
+            <Status
+            message={"Saving"}
+            />
+          )}
+          {mode === DELETING && (
+            <Status
+            message={"Deleting"}
+            />
+          )}
+          {mode === EDIT && (
+            <Form
+            name={props.interview.student}
+            interviewers={props.interviewers}
+            interviewer={props.interview.interviewer.id}
+            cancel={back}
+            onSave={save}
+            />
+          )}
+          {mode === ERROR_SAVE && (
+            <Error
+            cancel={back}
+            message={"save"}
+            />
+          )}
+          {mode === ERROR_DELETE && (
+            <Error
+            cancel={back}
+            message={"delete"}
+            />
+          )}
+          </article>
+        </Fragment>
+      
+      
       
     )
   
