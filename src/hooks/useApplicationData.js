@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from "react";
 
 import axios from 'axios'
-
+import reducer, { SET_DAY, SET_APPLICATION, SET_INTERVIEW} from "../reducers/application.js"
 
 
 
